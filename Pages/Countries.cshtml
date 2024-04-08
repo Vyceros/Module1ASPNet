@@ -1,0 +1,23 @@
+﻿@page
+@model ITStepRazorApp.Pages.CountriesModel
+@{
+}
+<div class="text-center">
+    <div class="mainText">
+        <h1 class="text-dark text-capitalize display-2">Countries of the world</h1>
+        <h2 class="mainSubTitle">
+            @foreach (var country in Model.seedCountries)
+            {
+                <p>@country.Country</p>
+                <p>Capital city: @country.City</p>
+                <p>Continent: @country.Continent</p>
+                <p>Population: @country.Population</p>
+                <br />
+                <hr />
+
+            }
+        </h2>
+        
+       
+    </div>
+</div>

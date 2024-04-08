@@ -1,0 +1,14 @@
+﻿@page
+@using ITStepRazorApp.Pages.Shared
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";   
+}
+
+
+<div class="text-center">
+    <div class="mainText">
+        <h1 class="text-black text-capitalize display-4">Your current date time is:@Model.dateTime.ToString() </h1>
+        <h2 class="mainSubTitle">Your current random letter: @Model.RandomChar.ToString() </h2>
+    </div>
+</div>
