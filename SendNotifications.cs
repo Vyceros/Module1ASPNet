@@ -6,7 +6,7 @@ namespace ITStepRazorApp
     {
         public void SendEmail(string mail)
         {
-            Console.WriteLine("Sending sales notification.");
+            Console.WriteLine("Sending sales notification." + mail);
         }
     }
 }
