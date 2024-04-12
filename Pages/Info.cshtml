@@ -2,23 +2,36 @@
 @model ITStepRazorApp.Pages.InfoModel
 @{
 }
+<style>
+      flexbox{
+
+      }
+</style>
 <div class="text-center">
     <div class="mainText">
         <h1 class="text-dark text-capitalize display-2">Best restaraunt in Tbilisi. Good price, good vibes.</h1>
-        <h2 class="mainSubTitle">See Our most popular choices and order below: </h2>
-        
-        <div class="container" >
-            <div class="col-4 mb-5">
-
-                    @foreach (var food in Model.khachapuris)
-                    {
-                    <img src="~/Images/Khachapuri.png" class="w-50 h-50" />
-                    <p>@food.KhachapuriName</p>
-                    <p>@food.FinalPrice$</p>
-                    }
+        <h2 class="mainSubTitle">Order below: </h2>
+        <div class="container">
+            <form method="post">
+            <div class="mx-auto mt-5 mb-5 px-5 pt-5 pb-5 rounded-5 bg-light col-4">
+                <label class="p-0">Food Name</label>
+                <input type="text" asp-for="khachapuri.KhachapuriName" placeholder="Give khachapuri a name" />
+                <br />
+                <input type="checkbox" asp-for="khachapuri.Large" placeholder="Large" />
+                <br />
+                <input type="checkbox" asp-for="khachapuri.Medium" placeholder="Medium" />
+                <br />
+                <input type="checkbox" asp-for="khachapuri.Small" placeholder="Small" />
+                <br />
+                <button class="btn btn-primary alert-danger mt-1" type="submit" >Submit order.</button>
+            </form>
             </div>
-                <a class="btn btn-primary" style="float:center" asp-area="" asp-page="Order">WIP</a>
         </div>
+        
+
+        
+
+
     </div>   
 </div>
 

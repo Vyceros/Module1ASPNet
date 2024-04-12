@@ -6,13 +6,23 @@ namespace ITStepRazorApp.Pages
 {
     public class InfoModel : PageModel
     {
-        public List<KhachapuriModel> khachapuris = new List<KhachapuriModel>()
-        {
-            new KhachapuriModel(){ImageTitle = "Khachapuri",KhachapuriName = "Imeruli",Large = true,BasePrice = 12,FinalPrice = 20 },
-            new KhachapuriModel(){ImageTitle = "Khachapuri",KhachapuriName = "Acharuli",Medium = true,BasePrice = 12,FinalPrice = 23 },  
-        };
+        [BindProperty]
+        public KhachapuriModel khachapuri { get; set; }
+        public float khachapuriPrice { get; set; }
+
         public void OnGet()
         {
+
+        }
+        public IActionResult OnPost()
+        {
+            khachapuriPrice = khachapuri.BasePrice;
+
+            if (khachapuri.Large) khachapuriPrice += 10;
+            if(khachapuri.Medium) khachapuriPrice += 8;
+
+
+            return RedirectToPage("Index", khachapuri.KhachapuriName, khachapuriPrice);
         }
     }
 }
