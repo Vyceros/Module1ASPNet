@@ -1,0 +1,27 @@
+﻿@page
+@model ITStepRazorApp.Pages.Authentication.EnableTwoFactorModel
+@{
+}
+
+<h1>Enable your 2FA by entering the code from the auth app</h1>
+<p>
+    @Model.Model.Token
+</p>
+<p>
+    You can also scan the QR code with the app.
+</p>
+
+<div id="qrCode"></div>
+<form method="post">
+    <input hidden asp-for="@Model.Model.Token"/>
+    <div class="form-group">
+        Enter the code from the app: <input type="text" class="form-control" asp-for="@Model.Model.Code" />
+    </div>
+    <button type="submit" class="btn btn-primary">Confirm</button>
+</form>
+section Scripts{
+<script src="~/js/qrcode.js"></script>
+<script type="text/javascript">
+    new QRCode(document.getElementById("qrCode"), "@Model.Model.QRCodeUrl");
+</script>
+}

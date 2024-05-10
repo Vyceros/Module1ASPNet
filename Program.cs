@@ -1,5 +1,9 @@
 using ITStepRazorApp.Data;
-using ITStepRazorApp.Data.Interfaces;
+using ITStepRazorApp.Data.Model;
+using ITStepRazorApp.Services.Implementations;
+using ITStepRazorApp.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ITStepRazorApp
@@ -11,15 +15,32 @@ namespace ITStepRazorApp
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddSingleton<ISendEmails, SendNotifications>();
-
-            builder.Services.AddDbContext<ApplicationDbContext>(options=> 
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-            builder.Services.AddRazorPages();
+            
             
 
+            builder.Services.AddRazorPages();
+            builder.Services.AddScoped<IEmailSender, SendEmail>();
+            // Add Authentication
+            builder.Services.AddAuthentication()
+                .AddBearerToken(IdentityConstants.BearerScheme);
+
+            builder.Services.AddAuthorizationBuilder();
+
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            builder.Services.AddAuthentication().AddGoogle(options =>
+            {
+                options.ClientId = "test";
+                options.ClientSecret = "test";
+            });
+
             var app = builder.Build();
+
+            
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -33,6 +54,7 @@ namespace ITStepRazorApp
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

@@ -1,16 +1,16 @@
 ﻿using ITStepRazorApp.Data.Model;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ITStepRazorApp.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions options) : base(options) { }
-        
-        DbSet<KhachapuriOrder> khachapuriOrders {  get; set; }
-        DbSet<LobianiOrder> lobianiOrders { get; set; }
-        DbSet<KhinkaliOrder> khinkaliOrders { get; set; }
-        DbSet<MtsvadiOrder> mtsvadiOrders { get; set; }
+
+        public DbSet<PizzaModel> PizzaModel { get; set; }
+        public DbSet<ApplicationUser> AppUser { get; set; }
+
 
     }
 }

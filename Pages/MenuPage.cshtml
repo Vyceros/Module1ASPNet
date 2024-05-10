@@ -1,0 +1,21 @@
+﻿@page
+@model ITStepRazorApp.Pages.MenuPageModel
+@{
+    ViewData["Title"] = "MenuPage";
+}
+
+<div class="container">
+    <h1 class="mainSubTitle">Here are some of our most popular choices</h1>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                @foreach (var item in Model.PizzaModels)
+                {
+                    <h3 class="card-title">Pizza: @item.Name</h3>
+                    <p class="card-text">@item.Price$</p>
+                }
+            </div>
+            <a class="btn btn-primary btn-success" asp-page="/OrderPage">Order your own here.</a>
+        </div>
+    </div>
+</div>

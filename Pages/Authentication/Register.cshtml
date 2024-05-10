@@ -1,0 +1,82 @@
+﻿@page
+@model ITStepRazorApp.Pages.Authentication.RegisterModel
+@{
+    ViewData["Title"] = "Register Page";
+}
+@if (User.IsInRole("Admin"))
+{
+    <h1 class="pt-4">REGISTER - ADMIN PORTAL</h1>
+}
+else
+{
+    <h1 class="pt-4">@ViewData["Title"]</h1>
+}
+<section class="vh-100 bg-image"
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+
+                            <form asp-route-returnUrl ="@Model.ReturnUrl" method="post">
+
+                                <div asp-asp-validation-summary="ModelOnly" data-mdb-input-init class="form-outline mb-4">
+                                    
+                                    <input asp-for="@Model.Input.FirstName" type="text" id="form3Example1cg" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example1cg">Your Name</label>
+                                    <span asp-asp-validation-for="@Model.Input.FirstName" class="text-danger"></span>
+                                </div>
+                                <div asp-asp-validation-summary="ModelOnly" data-mdb-input-init class="form-outline mb-4">
+                                    <input asp-for="@Model.Input.LastName" type="text" id="form3Example3cg" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example3cg">Your Last Name</label>
+                                    <span asp-asp-validation-for="@Model.Input.LastName" class="text-danger"></span>
+                                </div>
+
+                                <div asp-asp-validation-summary="ModelOnly" data-mdb-input-init class="form-outline mb-4">
+                                    <input asp-for="@Model.Input.Email" type="email" id="form3Example3cg" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example3cg">Your Email</label>
+                                    <span asp-asp-validation-for="@Model.Input.Email" class="text-danger"></span>
+                                </div>
+
+                                <div asp-asp-validation-summary="ModelOnly" data-mdb-input-init class="form-outline mb-4">
+                                    <input asp-for="@Model.Input.Password" type="password" id="form3Example4cg" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example4cg">Password</label>
+                                    <span asp-asp-validation-for="@Model.Input.Password" class="text-danger"></span>
+                                </div>
+
+                                <div asp-asp-validation-summary="ModelOnly" data-mdb-input-init class="form-outline mb-4">
+                                    <input asp-for="@Model.Input.ConfirmPassword" type="password" id="form3Example4cdg" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example4cdg">Repeat your password</label>
+                                    <span asp-asp-validation-for="@Model.Input.ConfirmPassword" class="text-danger"></span>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit"
+                                            data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
+                                        Register
+                                    </button>
+                                </div>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <div class="form-floating py-2 col-6">
+                                        <select asp-for="@Model.Input.Role"></select>
+                                    </div>
+                                }
+                                <p class="text-center text-muted mt-5 mb-0">
+                                    Have already an account? <a href="#!"
+                                                                class="fw-bold text-body"><u>Login here</u></a>
+                                </p>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </</div>
+    </div>
+</section>
+
+
